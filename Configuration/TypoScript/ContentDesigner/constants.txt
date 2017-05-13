@@ -1,0 +1,26 @@
+plugin.tx_nnaddress_contentdesigner {
+	view.all {
+		# cat=plugin.tx_nnaddress_contentdesigner/file; type=string; label=ALL-VIEW: Path to template root (FE)
+		templateRootPath = EXT:nn_address/Resources/Private/ContentDesigner/All/Templates/
+		# cat=plugin.tx_nnaddress_contentdesigner/file; type=string; label=ALL-VIEW: Path to template partials (FE)
+		partialRootPath = EXT:nn_address/Resources/Private/ContentDesigner/All/Partials/
+		# cat=plugin.tx_nnaddress_contentdesigner/file; type=string; label=ALL-VIEW: Path to template layouts (FE)
+		layoutRootPath = EXT:nn_address/Resources/Private/ContentDesigner/All/Layouts/
+	}
+	view.single {
+		# cat=plugin.tx_nnaddress_contentdesigner/file; type=string; label=SINGLE-VIEW: Path to template root (FE)
+		templateRootPath = EXT:nn_address/Resources/Private/ContentDesigner/Single/Templates/
+		# cat=plugin.tx_nnaddress_contentdesigner/file; type=string; label=SINGLE-VIEW: Path to template partials (FE)
+		partialRootPath = EXT:nn_address/Resources/Private/ContentDesigner/Single/Partials/
+		# cat=plugin.tx_nnaddress_contentdesigner/file; type=string; label=SINGLE-VIEW: Path to template layouts (FE)
+		layoutRootPath = EXT:nn_address/Resources/Private/ContentDesigner/Single/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_nnaddress_contentdesigner//a; type=string; label=Default storage PID
+		#storagePid = 
+	}
+	settings {
+		# cat=plugin.tx_nnaddress_contentdesigner//a; type=boolean; label=Enable IRRE in Page properties
+		enableIrre = 0
+	}
+}

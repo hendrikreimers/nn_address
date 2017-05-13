@@ -1,0 +1,152 @@
+page.includeCSS.tx_nnaddress_contentdesigner = EXT:nn_address/Resources/Public/Css/contentdesigner.css
+
+# Extend page properties to select a person
+[globalVar = LIT:{$plugin.tx_nnaddress_contentdesigner.settings.enableIrre} = 1]
+# Make the owner of the page editable his own address without access them all
+pages.tx_contentdesigner_flexform.settings >
+pages.tx_contentdesigner_flexform.settings {
+  cObject.sDEF {
+    sheetTitle = Mitarbeiter-Datensatz
+      el.userid {
+        label = Eintrag
+        config {
+          type = inline
+          foreign_table = tx_nnaddress_domain_model_person
+          multiple      = 0
+          size          = 1
+          autoSizeMax   = 30
+          minitems      = 0
+          maxitems      = 1
+        }
+    }
+  }
+}
+[else]
+# Enables the Master User to select a person
+pages.tx_contentdesigner_flexform.settings {
+  cObject.sDEF {
+    sheetTitle = Mitarbeiter-Datensatz
+      el.userid {
+        label = Eintrag
+        config {
+          type          = group
+          internal_type = db
+          allowed       = tx_nnaddress_domain_model_person
+          size          = 1
+          maxitems      = 1
+          minitems      = 0
+          show_thumbs   = 0
+        }
+    }
+  }
+}
+[global]
+
+#
+## Make a CSV List of all users of selected page
+#
+lib.userdata = CONTENT
+lib.userdata {
+  table = pages
+  
+  select {
+    pidInList.data = field:pagePid
+    orderBy = sorting ASC
+    
+    selectFields = uid,tx_contentdesigner_flexform
+  }
+  
+  renderObj = COA
+  renderObj {
+    # Nur weiter machen, wenn Nutzerdaten verfügbar
+    if.isTrue.field = userid
+    
+    10 = TEXT
+    10.dataWrap = {field:userid}:{field:uid},
+  }
+}
+
+#
+## Bring it to an content element to put out all Persons from subpages of selected page
+#
+tt_content.tx_contentdesigner_useronpages < plugin.tx_contentdesigner
+tt_content.tx_contentdesigner_useronpages.settings {  
+  title = Benutzer auf Seiten
+  description = Zeigt von allen Hauptseiten, die hinterlegten Userdaten an
+  
+  cObject.sDEF {
+    sheetTitle = Allgemein
+    el.pagePid {
+      label = Oberseite
+      config {
+        type = group
+        internal_type = db
+        allowed = pages
+        size = 1
+        maxitems = 1
+        minitems = 0
+        show_thumbs = 0
+      }
+    }
+  }
+  
+  renderObj = USER
+  renderObj {
+    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    pluginName = Single
+    extensionName = NnAddress
+    controller = Person
+    vendorName = NN
+    action = single
+    switchableControllerActions.Person.1 = single
+    features.rewrittenPropertyMapper = 1
+    
+	view {
+	  templateRootPath = {$plugin.tx_nnaddress_contentdesigner.view.all.templateRootPath}
+	  partialRootPath  = {$plugin.tx_nnaddress_contentdesigner.view.all.partialRootPath}
+	  layoutRootPath   = {$plugin.tx_nnaddress_contentdesigner.view.all.layoutRootPath}
+	}
+    
+    settings {
+      enableStdWrap = 1
+      persons < lib.userdata
+    }
+  }
+}
+
+#
+## Shows the current User of the current page set in the page properties
+#
+tt_content.tx_contentdesigner_useroncurpage < plugin.tx_contentdesigner
+tt_content.tx_contentdesigner_useroncurpage.settings {
+  title = Benutzer auf dieser Seite
+  description = Zeigt die Benutzerdaten von der aktuellen Seite an
+  
+  cObject {
+    
+  }
+  
+  renderObj = USER
+  renderObj {
+    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    pluginName = Single
+    extensionName = NnAddress
+    controller = Person
+    vendorName = NN
+    action = single
+    switchableControllerActions.Person.1 = single
+    features.rewrittenPropertyMapper = 1
+	
+	view {
+	  templateRootPath = {$plugin.tx_nnaddress_contentdesigner.view.single.templateRootPath}
+	  partialRootPath  = {$plugin.tx_nnaddress_contentdesigner.view.single.partialRootPath}
+	  layoutRootPath   = {$plugin.tx_nnaddress_contentdesigner.view.single.layoutRootPath}
+	}
+	
+    settings {
+      enableStdWrap = 1
+      persons = TEXT
+      persons.data = page:userid
+    }
+  }
+}

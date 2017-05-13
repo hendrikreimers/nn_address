@@ -1,0 +1,178 @@
+
+table.tx_nnaddress {
+	border-collapse: collapse;
+	width: 100%;
+	border: 0;
+}
+
+table.tx_nnaddress tr th {
+	font-weight: bold;
+	border-bottom: 1px solid #000;
+}
+
+table.tx_nnaddress tr td { 
+	padding: 10px;
+	text-align: left;
+	padding-left: 0;
+	border-bottom: 1px solid #cfcfcf;
+}
+
+table.tx-nn-address {
+	border-collapse: collapse;
+	background: #FFF;
+}
+
+table.tx-nn-address td {
+	padding: 10px;
+	vertical-align: top;
+}
+
+
+
+/**
+ * Address block
+ */
+div.addressBlock {
+  padding: 10px 0;
+  border-top: 1px solid #cfcfcf;
+}
+
+div.addressBlock:first-child {
+  border-top: 0;
+}
+
+div.addressMap,
+div.addressText {
+  display: inline-block; zoom: 1; *display: block;
+  width: 250px;
+  vertical-align: top;
+}
+
+div.addressBlock .sub {
+	font-size: 0.7em;
+}
+
+
+
+/**
+ * Range links (A-Z,#)
+ */
+
+ul.tx_nnaddress_range {
+	margin: 20px 0;
+	padding: 0;
+}
+
+ul.tx_nnaddress_range li {
+	display: inline;
+	list-style: none;
+}
+
+ul.tx_nnaddress_range a.active {
+	font-weight: bold;
+}
+
+
+
+/**
+ * Orders
+ */
+
+table.tx_nnaddress tr.orderby_organisation th.organisation.order_0:after {
+	content: ' \2193';
+}
+table.tx_nnaddress tr.orderby_organisation th.organisation.order_1:after {
+	content: ' \2191';
+}
+
+table.tx_nnaddress tr.orderby_lastName th.lastName.order_0:after {
+	content: ' \2193';
+}
+table.tx_nnaddress tr.orderby_lastName th.lastName.order_1:after {
+	content: ' \2191';
+}
+
+
+
+/**
+ * Pagination
+ */
+.f3-widget-paginator li {
+	margin: 0;
+	padding: 0;
+	display: inline;
+	list-style: none;
+}
+
+.f3-widget-paginator {
+	margin: 10px 0;
+	padding: 0;
+	display: block;
+}
+
+ .f3-widget-paginator li.current {
+	opacity: 0.5;
+ }
+
+
+/**
+ * CSS Button Link Layout
+ */
+
+ .f3-widget-paginator li.current, 
+.f3-widget-paginator li a,
+.button {        
+    display: inline-block;
+    white-space: nowrap;
+    background-color: #ccc;
+    background-image: linear-gradient(top, #eee, #ccc);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee', EndColorStr='#cccccc');
+    border: 1px solid #777;
+    padding: 0 1.5em;
+    margin: 0.5em;
+    font: bold 1em/2em Arial, Helvetica;
+    text-decoration: none;
+    color: #333;
+    text-shadow: 0 1px 0 rgba(255,255,255,.8);
+    border-radius: .2em;
+    box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+}
+
+.button {
+  margin-left: 110px;
+}
+
+.f3-widget-paginator li a:hover,
+.button:hover {
+    background-color: #ddd;        
+    background-image: linear-gradient(top, #fafafa, #ddd);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#fafafa', EndColorStr='#dddddd');        
+}
+
+.f3-widget-paginator li a:active,
+.button:active {
+    box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+    position: relative;
+    top: 1px;
+}
+
+.f3-widget-paginator li a:focus,
+.button:focus {
+    outline: 0;
+    background: #fafafa;
+}
+
+
+
+/**
+ * SELECT FORM ELEMENT
+ *
+ */
+select.tx_nnaddress_group.loading {
+		background: url('/typo3conf/ext/nn_address/Resources/Public/Icons/preload.png') no-repeat center center;
+}
+
+select.tx_nnaddress_group.loading  {
+		text-indent: -999px;
+}
+

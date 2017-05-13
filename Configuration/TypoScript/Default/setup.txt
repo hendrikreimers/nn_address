@@ -1,0 +1,170 @@
+#
+## Default styles
+#
+[globalVar = LIT:1 = {$plugin.tx_nnaddress.settings.includeCSS}]
+  page.includeCSS.tx_nnaddress = EXT:nn_address/Resources/Public/Css/default.css
+[global]
+[globalVar = LIT:1 = {$plugin.tx_nnaddress.settings.groupSearchTypeAnd}] && [globalVar = LIT:1 = {$plugin.tx_nnaddress.settings.includeJS}]
+  page.includeJS.tx_nnaddress  = EXT:nn_address/Resources/Public/JavaScript/default.js
+[global]
+
+#
+## Configuration
+#
+plugin.tx_nnaddress {
+	view {
+		templateRootPath = {$plugin.tx_nnaddress.view.templateRootPath}
+		partialRootPath = {$plugin.tx_nnaddress.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_nnaddress.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_nnaddress.persistence.storagePid}
+		recursive  = 99
+	}
+	features {
+		skipDefaultArguments    = 1
+		rewrittenPropertyMapper = 1
+	}
+	settings {
+		swordValidationExpr = {$plugin.tx_nnaddress.settings.swordValidationExpr}
+		searchInFields      = {$plugin.tx_nnaddress.settings.searchInFields}
+		itemsPerPage        = {$plugin.tx_nnaddress.settings.itemsPerPage}
+		groupSearchTypeAnd  = {$plugin.tx_nnaddress.settings.groupSearchTypeAnd}
+	}
+	objects {
+		# Hook: Checks if action should be cached. In this case no caching if searchBox is enabled
+		TYPO3\CMS\Extbase\Service\ExtensionService.className = NN\NnAddress\Service\ExtensionService
+	}
+}
+
+
+
+#
+## A little trick to make smaller URLs
+#
+[globalVar = GP:tx_nnaddress_abclist|person > 0]
+	config.defaultGetVars.tx_nnaddress_abclist.action = show
+[global]
+[globalVar = GP:tx_nnaddress_list|person > 0]
+	config.defaultGetVars.tx_nnaddress_list.action = show
+[global]
+
+
+
+#
+## Shows a map on each address in single view
+#
+lib.nnAddressMap = COA
+lib.nnAddressMap {
+	15 = LOAD_REGISTER
+
+	15.address              = TEXT
+	15.address.current      = 1
+	15.address.rawUrlEncode = 1
+	15.address.wrap         = |
+
+	15.uid       = TEXT
+	15.uid.field = uid
+	15.uid.wrap  = |
+  
+	20 = IMAGE
+    20 {
+      wrap = |<span class="sub">Google Maps</span>
+      
+      file.import.stdWrap.cObject = USER
+      file.import.stdWrap.cObject {
+        includeLibs = EXT:nn_address/Resources/Private/GoogleStaticImage/user_getextimage.class.php
+        userFunc    = user_getExtImage->main
+        
+        url = TEMPLATE
+        url {
+          template = TEXT
+          template.value = http://maps.google.com/maps/api/staticmap?center=###ADDRESS###&zoom=15&size=###EXT_WIDTH###x###EXT_HEIGHT###&maptype=roadmap&markers=color:red||###ADDRESS###&sensor=false&style=
+		  template.wrap  = |hue:0x{$plugin.tx_nnaddress.settings.mapColor}
+          
+          marks {
+			ADDRESS      = TEXT
+			ADDRESS.data = register:address
+		
+			EXT_WIDTH = TEXT
+			EXT_WIDTH.value  = 250
+			
+			EXT_HEIGHT = TEXT
+			EXT_HEIGHT.value = 150
+          }
+        }
+        
+        targetPath   = uploads/tx_nnaddress/
+        fileExt      = jpg
+        
+		filename = TEXT
+        filename.value = nn_map
+        filename.dataWrap = |_{register:address}
+		
+        cacheTimeout = 900
+      }
+        
+      width  = 250
+      height = 150
+    }
+  
+	25 = RESTORE_REGISTER
+}
+
+
+
+#
+## Shows associated Contacts to a Person entry (flexform field)
+#
+lib.nnAddressAssociated = RECORDS
+lib.nnAddressAssociated {
+  tables       = tx_nnaddress_domain_model_person
+  source.field = uidList
+  dontCheckPid = 1
+  
+  wrap = <ul class="associatedPersons">|</ul>
+  
+  conf.tx_nnaddress_domain_model_person = TEXT
+  conf.tx_nnaddress_domain_model_person {
+    value      = {field:title} {field:first_name} {field:last_name}
+    insertData = 1
+    wrap       = <li>|</li> 
+    
+    typolink {
+      parameter.data            = TSFE:id
+      additionalParams.dataWrap = &tx_nnaddress_abclist[person]={field:uid}
+	  addQueryString            = 0
+	  useCacheHash              = 1
+    }
+  }
+}
+
+
+
+#
+## handling the event on changing a group
+#
+tx_nnaddress_ajax = PAGE
+tx_nnaddress_ajax {
+	typeNum = 9323
+	
+	config.disableAllHeaderCode = 1
+	config.metaCharset          = UTF-8
+	
+	10 = USER
+	10 {
+		userFunc      = TYPO3\CMS\Extbase\Core\Bootstrap->run
+		pluginName    = List
+		extensionName = NnAddress
+		controller    = Person
+		vendorName    = NN
+		action        = grouplist
+		
+		switchableControllerActions.Person.1 = grouplist
+		
+		view        =< plugin.tx_nnaddress.view
+		features    =< plugin.tx_nnaddress.features
+		persistence =< plugin.tx_nnaddress.persistence
+		settings    =< plugin.tx_nnaddress.settings
+	}
+}

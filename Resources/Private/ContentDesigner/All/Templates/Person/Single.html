@@ -1,0 +1,30 @@
+{namespace nn=NN\NnAddress\ViewHelpers}
+<f:layout name="Default" />
+
+This Template is responsible for displaying a single view for a domain object
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        Show.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+<h1>Person of selected subpages</h1>
+
+<f:flashMessages />
+
+<f:for each="{persons}" as="person">
+	
+    <div class="tx_nnaddress_cd_all">
+        <div class="info">
+            <f:link.page pageUid="{pidList -> nn:iterator.getByKey(key:'{person.uid}')}">{person.title} {person.firstName} {person.lastName}</f:link.page>
+        </div>
+    </div>
+    
+</f:for>
+
+</f:section>

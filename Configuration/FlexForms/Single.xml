@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_flexForm_sheet_general</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+					<settings.persons>
+                        <TCEforms>
+                            <label>LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_flexForm_persons</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>tx_nnaddress_domain_model_person</allowed>
+								<foreign_table>tx_nnaddress_domain_model_person</foreign_table>
+								<foreign_table_where> ORDER BY tx_nnaddress_domain_model_group.surname ASC</foreign_table_where>
+								<size>1</size>
+								<minitems>1</minitems>
+								<maxitems>1</maxitems>
+								<wizards>
+									<suggest>
+										<type>suggest</type>
+									</suggest>
+								</wizards>
+							</config> 
+                        </TCEforms>
+                    </settings.persons>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

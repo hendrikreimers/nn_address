@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="de" datatype="plaintext" original="messages" date="2014-03-18T13:08:22Z" product-name="nn_address">
+		<header/>
+		<body>
+
+			<trans-unit id="type.description">
+				<target>Typ</target>
+			</trans-unit>
+			
+			<trans-unit id="type.0">
+				<target>Privat</target>
+			</trans-unit>
+			<trans-unit id="type.1">
+				<target>Arbeit</target>
+			</trans-unit>
+			<trans-unit id="type.2">
+				<target>Andere</target>
+			</trans-unit>
+			
+			<trans-unit id="street.description">
+				<target>Strasse</target>
+			</trans-unit>
+			<trans-unit id="street_nr.description">
+				<target>Hausnr.</target>
+			</trans-unit>
+			<trans-unit id="building.description">
+				<target><![CDATA[Gebäude]]></target>
+			</trans-unit>
+			<trans-unit id="room.description">
+				<target>Raum</target>
+			</trans-unit>
+			<trans-unit id="zip.description">
+				<target>PLZ</target>
+			</trans-unit>
+			<trans-unit id="city.description">
+				<target>Stadt</target>
+			</trans-unit>
+			<trans-unit id="country.description">
+				<target>Land</target>
+			</trans-unit>
+			<trans-unit id="region.description">
+				<target>Region</target>
+			</trans-unit>
+			<trans-unit id="email.description">
+				<target>E-Mail</target>
+			</trans-unit>
+			<trans-unit id="website.description">
+				<target>Webseite</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

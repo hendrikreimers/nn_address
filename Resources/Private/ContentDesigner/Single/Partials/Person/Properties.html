@@ -1,0 +1,51 @@
+{namespace nn=NN\NnAddress\ViewHelpers}
+<div class="tx_nnaddress_cd_single">
+
+	<div class="floatLeft image">
+    	<f:if condition="{person.image}">
+    	  <f:image src="uploads/tx_nnaddress/{person.image}" width="150c" height="200c" alt="{person.title} {person.firstName} {person.lastName}" />
+        </f:if>
+    </div>
+    <div class="floatLeft info">
+    	<dl>
+        
+          <dt>Name</dt>
+          <dd>{person.title} {person.firstName} {person.lastName}</dd>
+          
+          <dt><f:translate key="tx_nnaddress_domain_model_person.organisation" /></dt>
+          <dd>{person.organisation}</dd>
+          
+          <dt><f:translate key="tx_nnaddress_domain_model_person.addresses" /></dt>
+          <dd>
+          	<f:alias map="{address: '{person.addresses -> nn:iterator.first()}'}">
+            	{address.street} {address.streetNr}<br />
+                {address.zip} {address.city}
+            </f:alias>
+          </dd>
+          
+          <dt><f:translate key="tx_nnaddress_domain_model_person.phones" /></dt>
+          <dd>
+          	<f:alias map="{phone: '{person.phones -> nn:iterator.getByProperty(property:\'type\',value:1)}'}">
+            	<f:comment><f:translate key="LLL:EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_phone.xlf:type.{phone.type}" />:</f:comment>
+                {phone.number}
+            </f:alias>
+          </dd>
+          <dt><f:translate key="tx_nnaddress_domain_model_person.mails" /></dt>
+          <dd>
+          	<f:alias map="{mail: '{person.mails -> nn:iterator.getByProperty(property:\'type\',value:1)}'}">
+            	<f:comment><f:translate key="LLL:EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_mail.xlf:type.{mail.type}" />:</f:comment>
+                <f:link.email email="{mail.email}" />
+            </f:alias>
+          </dd>
+          
+          <dt><f:translate key="tx_nnaddress_domain_model_person.website" /></dt>
+          <dd>
+          	<f:alias map="{address: '{person.addresses -> nn:iterator.first()}'}">
+            	<f:link.external uri="{address.website}">{address.website}</f:link.external>
+            </f:alias>
+          </dd>
+          
+        </dl>
+    </div>
+
+</div>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-03-18T13:08:22Z" product-name="nn_address">
+		<header/>
+		<body>
+
+			<trans-unit id="gender.description">
+				<source>gender</source>
+			</trans-unit>
+			
+			<trans-unit id="gender.0">
+				<source>Mr.</source>
+			</trans-unit>
+			<trans-unit id="gender.1">
+				<source>Mrs.</source>
+			</trans-unit>
+			
+			<trans-unit id="title.description">
+				<source>title</source>
+			</trans-unit>
+			<trans-unit id="first_name.description">
+				<source>firstName</source>
+			</trans-unit>
+			<trans-unit id="second_first_name.description">
+				<source>secondFirstName</source>
+			</trans-unit>
+			<trans-unit id="last_name.description">
+				<source>lastName</source>
+			</trans-unit>
+			<trans-unit id="organisation.description">
+				<source>organisation</source>
+			</trans-unit>
+			<trans-unit id="birthday.description">
+				<source>birthday</source>
+			</trans-unit>
+			<trans-unit id="image.description">
+				<source>image</source>
+			</trans-unit>
+			<trans-unit id="website.description">
+				<source>website</source>
+			</trans-unit>
+			<trans-unit id="notes.description">
+				<source>notes</source>
+			</trans-unit>
+			<trans-unit id="addresses.description">
+				<source>addresses</source>
+			</trans-unit>
+			<trans-unit id="phones.description">
+				<source>phones</source>
+			</trans-unit>
+			<trans-unit id="mails.description">
+				<source>Mails</source>
+			</trans-unit>
+			<trans-unit id="groups.description">
+				<source>groups</source>
+			</trans-unit>
+			<trans-unit id="categories.description">
+				<source>categories</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

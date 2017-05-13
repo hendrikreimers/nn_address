@@ -1,0 +1,38 @@
+mod.wizards.newContentElement.wizardItems.plugins.elements.nnaddresssingle {
+	icon = gfx/c_wiz/regular_text.gif
+	title = Address - Single
+	description = Shows a single selected address
+	params = &defVals[tt_content][CType]=list&defVals[tt_content][list_type]=nnaddress_single
+}
+
+mod.wizards.newContentElement.wizardItems.plugins.elements.nnaddresslist {
+	icon = gfx/c_wiz/regular_text.gif
+	title = Address - List
+	description = List addresses with detail view
+	params = &defVals[tt_content][CType]=list&defVals[tt_content][list_type]=nnaddress_list
+}
+
+mod.wizards.newContentElement.wizardItems.plugins.elements.nnaddressabclist {
+	icon = gfx/c_wiz/regular_text.gif
+	title = Address - ABC List
+	description = List of grouped addresses with detail view
+	params = &defVals[tt_content][CType]=list&defVals[tt_content][list_type]=nnaddress_abclist
+}
+
+#mod.wizards.newContentElement.wizardItems.plugins.show := addToList(nnaddresslist,nnaddresssingle)
+
+mod.web_list {
+	table {
+		tx_nnaddress_domain_model_phone.hideTable   = 1
+		tx_nnaddress_domain_model_address.hideTable = 1
+		tx_nnaddress_domain_model_mail.hideTable    = 1
+	}
+	
+	deniedNewTables := addToList(tx_nnaddress_domain_model_phone,tx_nnaddress_domain_model_address,tx_nnaddress_domain_model_mail)
+}
+
+TCEFORM.tt_content.pi_flexform.types.tx_contentdesigner_useroncurpage.disabled = 1
+
+# Possibility to limit the selection of groups to a special page id
+TCEFORM.tx_nnaddress_domain_model_person.groups.PAGE_TSCONFIG_IDLIST      = 
+TCEFORM.tx_nnaddress_domain_model_group.parent_group.PAGE_TSCONFIG_IDLIST = 

@@ -1,0 +1,36 @@
+plugin.tx_nnaddress {
+	view {
+		# cat=plugin.tx_nnaddress/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:nn_address/Resources/Private/Templates/
+		# cat=plugin.tx_nnaddress/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:nn_address/Resources/Private/Partials/
+		# cat=plugin.tx_nnaddress/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:nn_address/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_nnaddress//a; type=string; label=Default storage PID
+		storagePid = 
+	}
+	settings {
+		# cat=plugin.tx_nnaddress//a; type=string; label=Color of google static map image
+		mapColor = FF8700
+		
+		# cat=plugin.tx_nnaddress//a; type=string; label=Security Expresion of search term values
+		swordValidationExpr = /^([\S\d\-\_\.\ ]+)$/i
+		
+		# cat=plugin.tx_nnaddress//a; type=string; label=Which fields to look for search term
+		searchInFields = lastName, firstName, organisation, addresses.country, addresses.city
+		
+		# cat=plugin.tx_nnaddress//a; type=int; label=How many items per page are shown
+		itemsPerPage = 10
+		
+		# cat=plugin.tx_nnaddress//a; type=boolean; label=Enable AND search of groups (if disabled, it looks for single group)
+		groupSearchTypeAnd = 0
+		
+		# cat=plugin.tx_nnaddress//a; type=boolean; label=Include JavaScript (not used if AND search enabled)
+		includeJS  = 0
+		
+		# cat=plugin.tx_nnaddress//a; type=boolean; label=Include Stylesheets
+		includeCSS = 1
+	}
+}

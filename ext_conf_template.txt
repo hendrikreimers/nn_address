@@ -1,0 +1,5 @@
+# cat=basic/label/101; type=text; label=LLL:EXT:nn_address/Resources/Private/Language/locallang_be.xml:extmng.flexForm
+flexForm = EXT:nn_address/Configuration/FlexForms/Model/
+
+# cat=basic/label/101; type=text; label=LLL:EXT:nn_address/Resources/Private/Language/locallang_be.xml:extmng.flexFormPlugin
+flexFormPlugin = EXT:nn_address/Configuration/FlexForms/

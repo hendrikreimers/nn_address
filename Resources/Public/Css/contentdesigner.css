@@ -1,0 +1,34 @@
+.tx_nnaddress_cd_single {
+	width: 100%;
+}
+
+.tx_nnaddress_cd_single .image {
+	vertical-align: top;
+}
+
+.tx_nnaddress_cd_single,
+.tx_nnaddress_cd_single .floatLeft {
+	display: inline-block; zoom: 1; *display: block;
+}
+
+.tx_nnaddress_cd_single dl {
+	margin-left: 10px;
+	width: 380px;
+}
+
+.tx_nnaddress_cd_single dt,
+.tx_nnaddress_cd_single dd {
+	display: inline-block; zoom: 1; *display: block;
+	vertical-align: top;
+	margin-bottom: 10px;
+}
+
+.tx_nnaddress_cd_single dt {
+	font-weight: bold;
+	margin-right: 20px;
+	width: 100px;
+}
+
+.tx_nnaddress_cd_single dd {
+	width: 250px;
+}
