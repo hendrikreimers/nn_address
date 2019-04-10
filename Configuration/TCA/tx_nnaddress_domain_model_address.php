@@ -3,13 +3,35 @@ if (!defined ('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$TCA['tx_nnaddress_domain_model_address'] = array(
-	'ctrl' => $TCA['tx_nnaddress_domain_model_address']['ctrl'],
+$tcaConf = array(
+	'ctrl' => array(
+		'title'	=> 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_address',
+		'label' => 'type',
+		'tstamp' => 'tstamp',
+		'crdate' => 'crdate',
+		'cruser_id' => 'cruser_id',
+		'dividers2tabs' => TRUE,
+
+		'versioningWS' => 2,
+		'versioning_followPages' => TRUE,
+		'origUid' => 't3_origuid',
+		'languageField' => 'sys_language_uid',
+		'transOrigPointerField' => 'l10n_parent',
+		'transOrigDiffSourceField' => 'l10n_diffsource',
+		'delete' => 'deleted',
+		'enablecolumns' => array(
+			'disabled' => 'hidden',
+			'starttime' => 'starttime',
+			'endtime' => 'endtime',
+		),
+		'searchFields' => 'type,street,street_nr,building,room,zip,city,country,region,website',
+		'iconfile' => 'EXT:nn_address/Resources/Public/Icons/tx_nnaddress_domain_model_address.gif'
+	),
 	'interface' => array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, type, street, street_nr, building, room, zip, city, country, region, website',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'l10n_parent, l10n_diffsource, hidden;;1, type, street, street_nr, building, room, zip, city, country, region, website, flexform'),
+		'1' => array('showitem' => 'l10n_parent, l10n_diffsource, hidden, --palette--;;1, type, street, street_nr, building, room, zip, city, country, region, website, flexform'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -20,6 +42,7 @@ $TCA['tx_nnaddress_domain_model_address'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'foreign_table' => 'sys_language',
 				'foreign_table_where' => 'ORDER BY sys_language.title',
 				'items' => array(
@@ -34,6 +57,7 @@ $TCA['tx_nnaddress_domain_model_address'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'items' => array(
 					array('', 0),
 				),
@@ -98,6 +122,7 @@ $TCA['tx_nnaddress_domain_model_address'] = array(
 			'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_address.type',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'items' => array(
 					array('LLL:EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_address.xlf:type.0', 0),
 					array('LLL:EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_address.xlf:type.1', 1),
@@ -199,16 +224,13 @@ $TCA['tx_nnaddress_domain_model_address'] = array(
 			'label' => '',
 			'config' => array(
 				'type' => 'flex',
-				'ds_pointerField' => 'uid',
 				'ds' => array(
-					'default' => ''
+                    'default' => 'FILE:EXT:nn_address/Configuration/FlexForms/Model/Address.xml'
 				),
 			),
 		)
 	),
 );
-
-// Add Flexform if in extManager Conf is set or remove the sheet
-\NN\NnAddress\Utility\Flexform::modifyFlexSheet($TCA, 'address');
+return $tcaConf;
 
 ?>

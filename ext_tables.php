@@ -28,159 +28,45 @@ if (!defined('TYPO3_MODE')) {
 	<INCLUDE_TYPOSCRIPT: source="FILE:EXT:nn_address/Configuration/TSconfig/default.txt">
 ');
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_nnaddress_domain_model_person', 'EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_person.xlf');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_nnaddress_domain_model_person');
-$TCA['tx_nnaddress_domain_model_person'] = array(
-	'ctrl' => array(
-		'title'	=> 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person',
-		'label' => 'last_name',
-		'label_alt' => 'first_name,organisation',
-		'label_alt_force' => 1,
-		'tstamp' => 'tstamp',
-		'crdate' => 'crdate',
-		'cruser_id' => 'cruser_id',
-		'dividers2tabs' => TRUE,
-
-		'versioningWS' => 2,
-		'versioning_followPages' => TRUE,
-		'origUid' => 't3_origuid',
-		'languageField' => 'sys_language_uid',
-		'transOrigPointerField' => 'l10n_parent',
-		'transOrigDiffSourceField' => 'l10n_diffsource',
-		'delete' => 'deleted',
-		'enablecolumns' => array(
-			'disabled' => 'hidden',
-			'starttime' => 'starttime',
-			'endtime' => 'endtime',
-		),
-		'searchFields' => 'gender,title,first_name,second_first_name,last_name,organisation,birthday,image,website,notes,addresses,phones,mails,groups,categories,',
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Person.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_nnaddress_domain_model_person.gif'
-	),
-);
-
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::makeCategorizable(
-    $_EXTKEY,
-    'tx_nnaddress_domain_model_person'
-);
-
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_nnaddress_domain_model_address', 'EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_address.xlf');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_nnaddress_domain_model_address');
-$TCA['tx_nnaddress_domain_model_address'] = array(
-	'ctrl' => array(
-		'title'	=> 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_address',
-		'label' => 'type',
-		'tstamp' => 'tstamp',
-		'crdate' => 'crdate',
-		'cruser_id' => 'cruser_id',
-		'dividers2tabs' => TRUE,
-
-		'versioningWS' => 2,
-		'versioning_followPages' => TRUE,
-		'origUid' => 't3_origuid',
-		'languageField' => 'sys_language_uid',
-		'transOrigPointerField' => 'l10n_parent',
-		'transOrigDiffSourceField' => 'l10n_diffsource',
-		'delete' => 'deleted',
-		'enablecolumns' => array(
-			'disabled' => 'hidden',
-			'starttime' => 'starttime',
-			'endtime' => 'endtime',
-		),
-		'searchFields' => 'type,street,street_nr,building,room,zip,city,country,region,website',
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Address.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_nnaddress_domain_model_address.gif'
-	),
-);
-
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_nnaddress_domain_model_phone', 'EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_phone.xlf');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_nnaddress_domain_model_phone');
-$TCA['tx_nnaddress_domain_model_phone'] = array(
-	'ctrl' => array(
-		'title'	=> 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_phone',
-		'label' => 'type',
-		'tstamp' => 'tstamp',
-		'crdate' => 'crdate',
-		'cruser_id' => 'cruser_id',
-		'dividers2tabs' => TRUE,
-
-		'versioningWS' => 2,
-		'versioning_followPages' => TRUE,
-		'origUid' => 't3_origuid',
-		'languageField' => 'sys_language_uid',
-		'transOrigPointerField' => 'l10n_parent',
-		'transOrigDiffSourceField' => 'l10n_diffsource',
-		'delete' => 'deleted',
-		'enablecolumns' => array(
-			'disabled' => 'hidden',
-			'starttime' => 'starttime',
-			'endtime' => 'endtime',
-		),
-		'searchFields' => 'type,number',
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Phone.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_nnaddress_domain_model_phone.gif'
-	),
-);
-
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_nnaddress_domain_model_mail', 'EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_mail.xlf');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_nnaddress_domain_model_mail');
-$TCA['tx_nnaddress_domain_model_mail'] = array(
-	'ctrl' => array(
-		'title'	=> 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_mail',
-		'label' => 'type',
-		'tstamp' => 'tstamp',
-		'crdate' => 'crdate',
-		'cruser_id' => 'cruser_id',
-		'dividers2tabs' => TRUE,
-
-		'versioningWS' => 2,
-		'versioning_followPages' => TRUE,
-		'origUid' => 't3_origuid',
-		'languageField' => 'sys_language_uid',
-		'transOrigPointerField' => 'l10n_parent',
-		'transOrigDiffSourceField' => 'l10n_diffsource',
-		'delete' => 'deleted',
-		'enablecolumns' => array(
-			'disabled' => 'hidden',
-			'starttime' => 'starttime',
-			'endtime' => 'endtime',
-		),
-		'searchFields' => 'type,email',
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Mail.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_nnaddress_domain_model_mail.gif'
-	),
-);
+\NN\NnAddress\Utility\Flexform::modifyFlexSheet($GLOBALS['TCA'], 'address');
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_nnaddress_domain_model_group', 'EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_group.xlf');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_nnaddress_domain_model_group');
-$TCA['tx_nnaddress_domain_model_group'] = array(
-	'ctrl' => array(
-		'title'	=> 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_group',
-		'label' => 'title',
-		'tstamp' => 'tstamp',
-		'crdate' => 'crdate',
-		'cruser_id' => 'cruser_id',
-		'dividers2tabs' => TRUE,
+\NN\NnAddress\Utility\Flexform::modifyFlexSheet($GLOBALS['TCA'], 'group');
 
-		'versioningWS' => 2,
-		'versioning_followPages' => TRUE,
-		'origUid' => 't3_origuid',
-		'languageField' => 'sys_language_uid',
-		'transOrigPointerField' => 'l10n_parent',
-		'transOrigDiffSourceField' => 'l10n_diffsource',
-		'delete' => 'deleted',
-		'enablecolumns' => array(
-			'disabled' => 'hidden',
-			'starttime' => 'starttime',
-			'endtime' => 'endtime',
-		),
-		'searchFields' => 'title,description,',
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Group.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_nnaddress_domain_model_group.gif'
-	),
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_nnaddress_domain_model_mail', 'EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_mail.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_nnaddress_domain_model_mail');
+\NN\NnAddress\Utility\Flexform::modifyFlexSheet($GLOBALS['TCA'], 'mail');
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_nnaddress_domain_model_person', 'EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_person.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_nnaddress_domain_model_person');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::makeCategorizable(
+		'nn_address',
+		'tx_nnaddress_domain_model_person'
 );
+\NN\NnAddress\Utility\Flexform::modifyFlexSheet($GLOBALS['TCA'], 'person');
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_nnaddress_domain_model_phone', 'EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_phone.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_nnaddress_domain_model_phone');
+\NN\NnAddress\Utility\Flexform::modifyFlexSheet($GLOBALS['TCA'], 'phone');
 
 // Flexform autloader
-\NN\NnAddress\Utility\Flexform::flexFormAutoLoader();
+//\NN\NnAddress\Utility\Flexform::flexFormAutoLoader();
+
+$plugins = [
+		'nnaddress_single' => 'FILE:EXT:nn_address/Configuration/FlexForms/Single.xml',
+		'nnaddress_list' => 'FILE:EXT:nn_address/Configuration/FlexForms/List.xml',
+		'nnaddress_abclist' => 'FILE:EXT:nn_address/Configuration/FlexForms/AbcList.xml'
+];
+foreach($plugins as $pluginSignature => $fileFlexForm){
+	$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,recursive';
+	$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, $fileFlexForm);
+}
+
+
+
 
 ?>

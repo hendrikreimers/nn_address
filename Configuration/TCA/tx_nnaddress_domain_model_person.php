@@ -3,13 +3,37 @@ if (!defined ('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$TCA['tx_nnaddress_domain_model_person'] = array(
-	'ctrl' => $TCA['tx_nnaddress_domain_model_person']['ctrl'],
+$tcaConf = array(
+	'ctrl' => array(
+		'title'	=> 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person',
+		'label' => 'last_name',
+		'label_alt' => 'first_name,organisation',
+		'label_alt_force' => 1,
+		'tstamp' => 'tstamp',
+		'crdate' => 'crdate',
+		'cruser_id' => 'cruser_id',
+		'dividers2tabs' => TRUE,
+
+		'versioningWS' => 2,
+		'versioning_followPages' => TRUE,
+		'origUid' => 't3_origuid',
+		'languageField' => 'sys_language_uid',
+		'transOrigPointerField' => 'l10n_parent',
+		'transOrigDiffSourceField' => 'l10n_diffsource',
+		'delete' => 'deleted',
+		'enablecolumns' => array(
+			'disabled' => 'hidden',
+			'starttime' => 'starttime',
+			'endtime' => 'endtime',
+		),
+		'searchFields' => 'gender,title,first_name,second_first_name,last_name,organisation,birthday,image,website,notes,addresses,phones,mails,groups,categories,',
+		'iconfile' => 'EXT:nn_address/Resources/Public/Icons/tx_nnaddress_domain_model_person.gif'
+	),
 	'interface' => array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, title, first_name, second_first_name, last_name, organisation, birthday, image, website, notes, addresses, phones, mails, groups, categories, flexform',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'l10n_parent, l10n_diffsource, hidden;;1, gender, title, first_name, second_first_name, last_name, organisation, birthday, image, website, notes, 
+		'1' => array('showitem' => 'l10n_parent, l10n_diffsource, hidden, --palette--;;1, gender, title, first_name, second_first_name, last_name, organisation, birthday, image, website, notes, 
 									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.addresses, addresses, 
 									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.phones, phones,
 									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.mails, mails, 
@@ -26,6 +50,7 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'foreign_table' => 'sys_language',
 				'foreign_table_where' => 'ORDER BY sys_language.title',
 				'items' => array(
@@ -40,6 +65,7 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'items' => array(
 					array('', 0),
 				),
@@ -104,6 +130,7 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
 			'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.gender',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'items' => array(
 					array('LLL:EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_person.xlf:gender.0', 0),
 					array('LLL:EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_person.xlf:gender.1', 1),
@@ -264,6 +291,7 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
 			'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.groups',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectMultipleSideBySide',
 				'foreign_table' => 'tx_nnaddress_domain_model_group',
 				'foreign_table_where' => ' AND (((\'###PAGE_TSCONFIG_IDLIST###\' <> \'\' OR \'###PAGE_TSCONFIG_IDLIST###\' > 0) AND FIND_IN_SET(tx_nnaddress_domain_model_group.pid,\'###PAGE_TSCONFIG_IDLIST###\')) OR (\'###PAGE_TSCONFIG_IDLIST###\' = \'\' OR \'###PAGE_TSCONFIG_IDLIST###\' = 0)) AND tx_nnaddress_domain_model_group.sys_language_uid=###REC_FIELD_sys_language_uid### ORDER BY tx_nnaddress_domain_model_group.title ',
 				'MM' => 'tx_nnaddress_person_group_mm',
@@ -278,16 +306,15 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
 			'label' => '',
 			'config' => array(
 				'type' => 'flex',
-				'ds_pointerField' => 'uid',
 				'ds' => array(
-					'default' => ''
+					'default' => 'FILE:EXT:nn_address/Configuration/FlexForms/Model/Person.xml'
 				),
 			),
 		)
 	),
 );
 
-// Add Flexform if in extManager Conf is set or remove the sheet
-\NN\NnAddress\Utility\Flexform::modifyFlexSheet($TCA, 'person');
 
+
+return $tcaConf;
 ?>
